@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logistic;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -24,5 +25,17 @@ class LogisticsController extends Controller
         return response()->json([
             'message' => 'Making deliver is successful.'
         ]);
+    }
+
+    public function getCount(){
+        return Logistic::latest()->count();
+    }
+
+    public function getCountWeekly(){
+        $today = Carbon::now();
+        $startOfWeek = $today->startOfWeek();
+        $endOfWeek = $today->endOfWeek();
+        $weeklyData = Logistic::whereBetween('created_at',[$startOfWeek,$endOfWeek])->count();
+        return $weeklyData;;
     }
 }

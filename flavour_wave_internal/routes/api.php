@@ -62,6 +62,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
     //logistics
     Route::post('/deliver',[LogisticsController::class,'make']);
+    Route::get('/delivers/count', [LogisticsController::class, 'getCount']);
+    Route::get('/delivers/weekly', [LogisticsController::class, 'getCountWeekly']);
 
     //receipe
     Route::post('/receipe/create',[ReceipesController::class,'create']);
