@@ -25,11 +25,9 @@ class PreorderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id' => ['required'] ,
-            'order_id' => ['required',Rule::unique('preorders','order_id')],
+            'user_id' => ['required',Rule::exists('users','user_id')] ,
             'location' => 'required',
-            'order_quantity' => 'required',
-            'delivered_quantity' => 'required'
+            'order_quantity' => 'required'
         ];
     }
 

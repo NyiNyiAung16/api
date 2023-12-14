@@ -9,12 +9,12 @@ class Preorder extends Model
 {
     use HasFactory;
 
-    public function customer(){
-        return $this->belongsTo(Customer::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function products(){
-        return $this->belongsToMany(Product::class,'preorder_details','order_id','product_id');
+        return $this->belongsToMany(Product::class);
     }
 
     public function deliver(){

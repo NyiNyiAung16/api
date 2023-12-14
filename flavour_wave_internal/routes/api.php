@@ -36,15 +36,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // frontend
 
     // customer
-    Route::get('/customers', [CustomerController::class, 'show']);
-    Route::post('customer/create', [CustomerController::class, 'createCustomer']);
-    Route::post('customer/delete', [CustomerController::class, 'deleteCustomer']);
+    Route::get('/users', [CustomerController::class, 'show']);
+    Route::post('user/create', [CustomerController::class, 'createUser']);
+    Route::post('user/signout', [CustomerController::class, 'logout']);
+    Route::patch('users/{user:user_id}/update', [CustomerController::class, 'update']);
 
     //  order
-    Route::get('customers/{id}/preorders', [OrderController::class, 'getPreorders']);
+    Route::get('users/{id}/preorders', [OrderController::class, 'getPreorders']);
     Route::post('preorders/create', [OrderController::class, 'createPreorder']);
-    Route::get('preorders/{id}', [OrderController::class, 'getPreOrder']);
-    Route::post('preorders/{preorder:order_id}/update', [OrderController::class, 'update']);
+    Route::get('preorders/{preorder}', [OrderController::class, 'getPreOrder']);
 
     // product
     Route::get('/products', [ProductController::class, 'all']);

@@ -22,7 +22,7 @@ class LogisticFactory extends Factory
     public function definition(): array
     {
         return [
-            'preorder_id' => Preorder::factory(),
+            'preorder_id' => 1,
             'quantity' => $this->faker->randomNumber(),
             'driver_id' => 1
         ];

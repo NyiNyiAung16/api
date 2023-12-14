@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
-
+    //create
     public function create(ProductsRequest $request){
         $cleanData = $request->validated();
         Product::create($cleanData);
@@ -23,7 +23,6 @@ class ProductController extends Controller
     // import all products to frontend
     public function all(){
        return Product::latest()->get();
-       
     }
 
     // import 4 random products to frontend

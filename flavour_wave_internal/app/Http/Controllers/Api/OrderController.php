@@ -14,7 +14,7 @@ class OrderController extends Controller
     public function getPreorders($id){
         $perPage = 12;
         $pageCount = ceil(count(Preorder::all())/$perPage);
-        $orders = Preorder::where('customer_id', $id)->latest()->paginate(12);
+        $orders = Preorder::where('user_id', $id)->latest()->paginate(12);
 
         return response()->json([
             'orders' => $orders,
@@ -27,9 +27,10 @@ class OrderController extends Controller
         $pId = request('product_id');
         if($pId){
             $preorderCleanData = $request->validated();
-            Preorder::create($preorderCleanData);
+            $preorder = Preorder::create($preorderCleanData);
+            
             foreach($pId as $id){
-                Product::find($id)->orders()->attach($request->order_id);
+                Product::find($id)->orders()->attach($preorder->id);
             }
             return response()->json([
                 'message' => 'create preorder is successful.'
@@ -41,11 +42,8 @@ class OrderController extends Controller
 
 
     // edit page order
-    public function getPreOrder($id){
-        $preorder = Preorder::where('order_id', $id)->get();
-        return response()->json([
-            'preorder' => $preorder,
-        ]);
+    public function getPreOrder(Preorder $preorder){
+        return $preorder;
     }
 
     // edit order list

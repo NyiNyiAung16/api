@@ -11,7 +11,7 @@ class LogisticsController extends Controller
 {
     public function make(Request $request){
         $validator = Validator::make($request->all(),[
-            'preorder_id' => ['required',Rule::exists('preorders','order_id')],
+            'preorder_id' => ['required',Rule::exists('preorders','id')],
             'driver_id' => ['required',Rule::exists('drivers','id')],
             'quantity' => 'required'
         ]);

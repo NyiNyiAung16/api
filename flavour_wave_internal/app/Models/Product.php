@@ -14,7 +14,7 @@ class Product extends Model
     protected $table = 'products';
 
     public function orders(){
-        return $this->belongsToMany(Preorder::class,'preorder_details','order_id','product_id');
+        return $this->belongsToMany(Preorder::class);
     }
 
     public function inventory(){

@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 class IngredientsController extends Controller
 {
     public function show(){
-        $ingredients = Ingredient::all();
-        return response()->json(['Ingredients'=>$ingredients]);
+        return Ingredient::latest()->get();
     }
 
     public function create(IngredientsRequest $request){

@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('preorders', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_id');
-            $table->string('order_id')->unique();
+            $table->string('user_id');
             $table->text('location');
             $table->integer('order_quantity');
             $table->timestamp('preorder_date');

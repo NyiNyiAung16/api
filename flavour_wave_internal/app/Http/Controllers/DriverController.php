@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class DriverController extends Controller
 {
     public function show(){
-        $drivers = Driver::all();
-        return response()->json(['drivers' => $drivers]);
+      return Driver::latest()->get();
     }
 }
