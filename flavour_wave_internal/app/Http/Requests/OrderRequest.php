@@ -7,14 +7,14 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
-class PreorderRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return TRUE;
+        return true;
     }
 
     /**
@@ -25,10 +25,10 @@ class PreorderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id' => ['required',Rule::exists('customers','customer_id')] ,
-            'preorder_id' => 'required',
+            'preorder_id' => ['required',Rule::exists('preorders','id')],
             'location' => 'required',
-            'order_quantity' => 'required'
+            'order_quantity' => 'required',
+            'product_name' => 'required'
         ];
     }
 

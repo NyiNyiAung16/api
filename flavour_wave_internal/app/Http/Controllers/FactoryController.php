@@ -9,6 +9,11 @@ use Illuminate\Validation\Rule;
 
 class FactoryController extends Controller
 {
+
+    public function show(){
+        return Factory::latest()->get();
+    }
+
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'product_id' => ['required',Rule::exists('products','id')],

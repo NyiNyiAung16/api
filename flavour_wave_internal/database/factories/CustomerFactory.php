@@ -20,9 +20,10 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            'customer_id' => 'fw' . $this->faker->randomNumber(3,true),
+            'customer_id' => 'fw-' . $this->faker->randomNumber(4,true),
             'name' => fake()->name(),
             'email' => fake()->email(),
+            'password' => fake()->password(),
             'image_url' => fake()->image(),
         ];
     }

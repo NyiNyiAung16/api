@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class WarehouseController extends Controller
 {
+
+    public function show(){
+        return Warehouse::all();
+    }
+
     public function create(WarehouseRequest $request){
         $cleanData = $request->validated();
         Warehouse::create($cleanData);

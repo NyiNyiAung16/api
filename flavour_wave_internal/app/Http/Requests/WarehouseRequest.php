@@ -32,6 +32,7 @@ class WarehouseRequest extends FormRequest
             'sales_return' => 'required',
             'damage' => 'required',
             'closing_balance' => 'required',
+            'availability'=>'required'
         ];
     }
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -25,10 +28,21 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required',
+            'email' => ['required',Rule::unique('customers','email')],
+            'password' => 'required',
         ];
-    }
 
+    }
+    
+    protected function failedValidation(Validator $validator)
+    {
+        // Extract the error messages from the validator
+        $errors = $validator->errors();
+
+        // Throw an exception with the error messages
+        throw new HttpResponseException(response()->json(['errors' => $errors], 422));
+    }
     /**
      * Get the validation attributes that apply to the request.
      *

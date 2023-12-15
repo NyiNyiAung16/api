@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ReceipesController extends Controller
 {
+
+    public function show(){
+        return Receipe::with('product','ingredient')->get();
+    }
+
     public function create(ReceipesRequest $request){
         $cleanData =$request->validated();
         Receipe::create($cleanData);

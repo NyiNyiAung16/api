@@ -13,8 +13,10 @@ class Product extends Model
 
     protected $table = 'products';
 
+    protected $with = ['inventory'];
+
     public function orders(){
-        return $this->belongsToMany(Preorder::class,'preorder_details','order_id','product_id');
+        return $this->belongsToMany(Preorder::class);
     }
 
     public function inventory(){

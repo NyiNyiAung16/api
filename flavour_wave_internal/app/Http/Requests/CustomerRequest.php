@@ -25,11 +25,8 @@ class CustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id' => ['required',Rule::unique('customers','customer_id')],
             'name' => 'required',
             'email' => ['required',Rule::unique('customers','email')],
-            'image_url' => ['required'],
-            'password' => 'required',
         ];
     }
 

@@ -6,30 +6,21 @@ use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
-    // change status
-    public function acceptOrder($id, Request $request){
+    
 
-
-        $accept = $this->acceptOrderStatus();
-        Preorder::where('order_id', $id)->update($accept);
-        return back()->with(['message' => 'The order has been accepted.']);
+    // update sales issue
+    private function inputSalesQty($product_id, $sales_issue){
+        $total = Warehouse::where('product_id', $product_id)->select('sales_issue')->get();
+        $total += $sales_issue;
+        return ['sales_issue'=>$total];
     }
 
-    public function cancelOrder($id, Request $request){
-
-
-        $cancel = $this->cancelOrderStatus();
-        Preorder::where('order_id', $id)->update($cancel);
-        return back()->with(['message' => 'The order has been cancelled.']);
+    // update availability
+    private function subtractSales($product_id, $sales_issue){
+        $total = Warehouse::where('product_id', $product_id)->select('availability')->get();
+        $total -= $sales_issue;
+        return ['availability'=>$total];
     }
 
-    // accept status
-    private function acceptOrderStatus(){
-        return [ 'status' => 'accepted' ];
-    }
-
-    // cancel status
-    private function cancelOrderStatus(){
-        return [ 'status' => 'cancelled' ];
-    }
+    
 }

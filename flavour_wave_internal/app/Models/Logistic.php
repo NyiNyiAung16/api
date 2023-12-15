@@ -9,6 +9,8 @@ class Logistic extends Model
 {
     use HasFactory;
 
+    protected $with = ['received_orders','driver_info'];
+
     public function received_orders(){
         return $this->belongsTo(Preorder::class,'preorder_id');
     }

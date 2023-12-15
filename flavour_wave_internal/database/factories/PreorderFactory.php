@@ -23,8 +23,7 @@ class PreorderFactory extends Factory
     {
         return [
             'customer_id' => Customer::factory(),
-            'order_id' => $this->faker->randomNumber(5, true),
-            'preorder_date' => $this->faker->date(),
+            'preorder_id' => $this->faker->randomNumber(5,true),
             'location' => fake()->sentence(),
             'delivered_quantity' => 20,
             'order_quantity' => $this->faker->randomNumber(2, true)
